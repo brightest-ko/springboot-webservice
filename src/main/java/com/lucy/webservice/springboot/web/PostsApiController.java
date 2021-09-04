@@ -1,7 +1,9 @@
 package com.lucy.webservice.springboot.web;
 
 import com.lucy.webservice.springboot.service.PostsService;
+import com.lucy.webservice.springboot.web.dto.PostsResponseDto;
 import com.lucy.webservice.springboot.web.dto.PostsSaveRequestDto;
+import com.lucy.webservice.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,4 +17,13 @@ public class PostsApiController{
         return postsService.save(requestDto);
     }
 
+    @PutMapping("/api/v1/posts/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
+        return postsService.update(id,requestDto);
+    }
+
+    @GetMapping("/api/v1/posts/{id}")
+    public PostsResponseDto findById(@PathVariable Long id){
+        return postsService.findById(id);
+    }
 }
